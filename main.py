@@ -34,6 +34,9 @@ async def get_current_timestamp():
 @app.post("/status/meeting")
 async def set_status(request: Request):
     resp = await request.json()
+    if "challenge" in resp:
+        return {'challenge': resp['challenge']}
+
     meeting_status = "in a meeting"
 
     user = resp['event']['user']
