@@ -7,3 +7,17 @@
 - Create a simple POST endpoint using FastAPI (or Flask, etc.)
   - The first time only, Slack will send a request with a Body containing a 'challenge' parameter. The endpoint needs to return the challenge value so that the URL can be verified (https://api.slack.com/events/url_verification).
 - Add User Token Scopes: `users:read` [Scopes that access user data and act on behalf of users that authorize them.]
+
+
+## Heroku
+- Create App and Pipeline
+- Create Procfile
+- Set up CI and run deployment job
+- Run the command to start the Dyno:
+```
+  heroku ps:scale web=1 -a slack-dnd-sync
+```
+- Monitor logs:
+```
+heroku logs --tail -a slack-dnd-sync
+```

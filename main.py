@@ -19,6 +19,18 @@ with open(config_path) as config_file:
 app = FastAPI()
 
 
+@app.get("/")
+async def home():
+    return {
+        "message": "UP",
+        "timestamp": await get_current_timestamp()
+    }
+
+
+async def get_current_timestamp():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
 @app.post("/status/meeting")
 async def set_status(request: Request):
     resp = await request.json()
