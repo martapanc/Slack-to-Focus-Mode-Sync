@@ -38,14 +38,13 @@ async def set_status(request: Request):
         return {'challenge': resp['challenge']}
 
     meeting_status = "in a meeting"
-
     user = resp['event']['user']
 
     if user['id'] == config['user_id']:
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
 
-        if user['profile']['status_text'].lower() == meeting_status:
+        if meeting_status in user['profile']['status_text'].lower():
             subprocess.run(['shortcuts', 'run', 'Focus Mode ON'])
             print('%s: In a meeting' % current_time)
         else:
